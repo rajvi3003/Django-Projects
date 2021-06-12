@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Url Shortner - Paras Chhugani</title>
+
+    {% comment %} boostrap css  {% endcomment %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+    <style media="screen">
+    body{
+      background-color: #FCFCFC;
+    }
+      #parasBranding{
+        width: 200px;
+      }
+      .testDiv{
+        border: 1px solid black;
+        /* height: 30px; */
+      }
+      #US_logo_div{
+        display: flex;
+        justify-content: center;
+      }
+      .short_submit{
+        display: flex;
+        justify-content: center;
+      }
+
+      #Result_url_div{
+        display: flex;
+        justify-content: center;
+        align-items:center;
+
+      }
+
+    </style>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-light" style="background-color:#799abc;">
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <img id="parasBranding" src="{% static 'img/paras_Branding.png' %}" alt="">
+      </a>
+    </nav>
+
+    <div class="container" id="main" >
+      <div class="" id="US_logo_div">
+          <img src="{% static 'img/US_logo.png' %}" alt="" style="width:400px;">
+      </div>
+
+
+      <div class="row">
+
+        <div class="col ">
+          <img src="{% static 'img/VectorG.jpg' %}" alt="" style="width:100%;margin-top:-40px;">
+        </div>
+
+        <div class="col ">
+
+
+          <form class="" id="post-form" action="{% url 'Urlshortner:create' %}" method="post">
+
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="exampleInputEmail1"><h1>Enter URL :</h1></label>
+              <input type="url" class="form-control" id="link"  name="link" placeholder="https://.......">
+            </div>
+
+            <div class="form-group short_submit">
+              <button type="submit" class="btn btn-primary">Short IT !!</button>
+            </div>
+
+          </form>
+
+
+          <div class="container" id="Result_url_div">
+
+            <h3 id="SResult" ></h3>
+            <button type="button" onclick="CopyButton()" id="copyB" name="button" style="padding:10px; border-radius:10px;width:70px;margin-left:30px;display:none;">
+              <img src="{% static 'img/copy.png' %}" alt="" style="width:30px;">
+              <span>copy</span>
+            </button>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+    <script type="text/javascript">
+  $(document).on('submit','#post-form',function(e){
+    e.preventDefault();
+
+    $.ajax({
+      type:'POST',
+      url:"{% url 'Urlshortner:create' %}",
+      data:{
+        link:$('#link').val(),
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+      },
+      success: function(data){
+        $('#SResult').html("http://127.0.0.1:8000/go/"+data)
+        document.querySelector("#copyB").style.display = "block";
+      }
+    });
+  });
+
+
+  function CopyButton(){
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($('#SResult').text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+
+  }
+
+
+</script>
+  </body>
+</html>

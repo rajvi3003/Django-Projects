@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Django Projects - Paras Chhugani</title>
+
+    {% comment %} boostrap css  {% endcomment %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style media="screen">
+      #parasBranding{
+        width: 250px;
+      }
+      #django_nav_logo{
+        width: 250px;
+        padding-top: 20px;
+      }
+      a{
+        color: black;
+      }
+      a:hover{
+        text-decoration: none;
+        color: inherit;
+      }
+      .projectlist{
+        margin-top: 50px;
+      }
+      .prolist{
+        margin: 20px;
+      }
+
+      .prolist:hover{
+        background-color: #0390fc;
+        color: white;
+      }
+
+
+    </style>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-light" style="background-color:#799abc;">
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <img id="parasBranding" src="{% static 'img/paras_Branding.png' %}" alt="">
+        <img id="django_nav_logo" src="{% static 'img/logo_nav.png' %}" alt="">
+      </a>
+    </nav>
+
+    <div class="container projectlist">
+      <div class="jumbotron">
+        <ul class="list-group">
+          <li class="list-group-item prolist" style="border-radius:20px;">
+            <a href="{% url 'Urlshortner:index' %}" >
+              <h2>Url Shortner</h2>
+            </a>
+          </li>
+
+          <li class="list-group-item prolist" style="border-radius:20px;">
+            <a href="{% url 'Urlshortner:index' %}" >
+              <h2>To-Do List</h2>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+  </body>
+</html>
