@@ -14,7 +14,7 @@
 
     <style media="screen">
     body{
-      background-color: #FCFCFC;
+      background-color: #FBFBFB;
     }
       #parasBranding{
         width: 200px;
@@ -38,38 +38,42 @@
         align-items:center;
 
       }
+      #PJ_logo{
+        width: 350px;
+      }
 
     </style>
 
   </head>
   <body>
-    <nav class="navbar navbar-light" style="background-color:#799abc;">
+    <nav class="navbar navbar-light sticky-top" style="border-bottom:10px solid #799abc;background-color: #F6F8FF;">
       <a class="navbar-brand" href="{% url 'index' %}">
         <img id="parasBranding" src="{% static 'img/paras_Branding.png' %}" alt="">
       </a>
+
+      <a href="{% url 'Urlshortner:index' %}">
+        <img id="PJ_logo"  src="{% static 'img/URLs_logo.png' %}" alt="">
+      </a>
+
     </nav>
 
     <div class="container" id="main" >
-      <div class="" id="US_logo_div">
-          <img src="{% static 'img/US_logo.png' %}" alt="" style="width:400px;">
-      </div>
-
 
       <div class="row">
 
         <div class="col ">
-          <img src="{% static 'img/VectorG.jpg' %}" alt="" style="width:100%;margin-top:-40px;">
+          <img src="{% static 'img/VectorG.jpg' %}" alt="" style="width:100%;margin-top:0px;">
         </div>
 
-        <div class="col ">
+        <div class="col " style="width:100%;margin-top:100px;" >
 
 
           <form class="" id="post-form" action="{% url 'Urlshortner:create' %}" method="post">
 
             {% csrf_token %}
-            <div class="form-group">
+            <div class="form-group" >
               <label for="exampleInputEmail1"><h1>Enter URL :</h1></label>
-              <input type="url" class="form-control" id="link"  name="link" placeholder="https://.......">
+              <input type="url" class="form-control" id="link"  name="link" placeholder="https://......." required>
             </div>
 
             <div class="form-group short_submit">

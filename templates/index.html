@@ -42,7 +42,7 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-light" style="background-color:#799abc;">
+    <nav class="navbar navbar-light" style="border-bottom:10px solid #799abc;">
       <a class="navbar-brand" href="{% url 'index' %}">
         <img id="parasBranding" src="{% static 'img/paras_Branding.png' %}" alt="">
         <img id="django_nav_logo" src="{% static 'img/logo_nav.png' %}" alt="">
@@ -59,7 +59,7 @@
           </li>
 
           <li class="list-group-item prolist" style="border-radius:20px;">
-            <a href="{% url 'Urlshortner:index' %}" >
+            <a href="{% url 'Todo:index' %}" >
               <h2>To-Do List</h2>
             </a>
           </li>

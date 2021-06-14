@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Todo - Paras Chhugani</title>
+
+    {% comment %} boostrap css  {% endcomment %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+    <style media="screen">
+    input{
+      border-radius: 15px;
+      height: 40px;
+    }
+    body{
+      background-color: #F6F8FF;
+    }
+      #parasBranding{
+        width: 200px;
+      }
+      .testDiv{
+        border: 1px solid black;
+        /* height: 30px; */
+      }
+      #PJ_logo{
+        width: 300px;
+      }
+      .Newtask_Div{
+        /* display: flex; */
+
+      }
+      .jumbotron{
+        padding: 2rem 2rem;
+        border-bottom-left-radius:50px;
+        border-bottom-right-radius:50px;
+      }
+      .Add_task_btn{
+        padding: 5px 10px;
+        border-radius: 15px;
+        margin-bottom: 5px;
+        margin-left: 20px;
+        background-color:#3264E5;
+        font-size:20px;
+      }
+      .OldTask{
+        height: 250px;
+        overflow-y: scroll;
+      }
+      .CompleteTask{
+        margin-top: 50px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-light sticky-top" style="border-bottom:10px solid #3264E5;background-color: #F6F8FF;">
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <img id="parasBranding" src="{% static 'img/paras_Branding.png' %}" alt="">
+      </a>
+
+      <a href="{% url 'Todo:index' %}">
+        <img id="PJ_logo"  src="{% static 'img/TD_logo.png' %}" alt="">
+      </a>
+    </nav>
+
+    <div class="container" id="main" >
+
+      <div class="Newtask_Div jumbotron">
+
+        <form class="" id="Task-form" action="{% url 'Todo:create' %}" method="post">
+
+          {% csrf_token %}
+          <h3>New Task :</h3>
+
+          <div class="" >
+            <input type="text" class="" id="Newtask"  name="Newtask" placeholder="Task Name :" required style="width:55%;">
+
+            <label for="TaskTime" style="margin-left:20px;">Time :</label>
+            <input type="datetime-local" id="TaskTime" name="TaskTime">
+            <button type="submit" class="btn btn-primary Add_task_btn" style="">Add task</button>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="OldTask">
+
+        <h2>Current Tasks</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Task</th>
+              <th scope="col">Time</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for task in task_list %}
+              {% if task.status == False %}
+                <tr>
+                  <th scope="row" class="table-{{ row_colors|random }}">1</th>
+                  <th scope="row">{{ task.task }}</th>
+                  <th scope="row">{{ task.date }}</th>
+                  <th scope="row">
+                    <button type="button" class="btn btn-success" onclick="task_complete({{ task.id }})">Complete</button>
+                     /
+                    <button type="button" class="btn btn-warning" onclick="task_delete({{ task.id }})" >Delete</button></th>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="CompleteTask">
+        <h2>Completed Task</h2>
+
+        <table class="table">
+          <tbody>
+
+            {% for task in task_list %}
+              {% if task.status == True %}
+                <tr class="table-{{ row_colors|random }}">
+                  <th scope="row">1</th>
+                  <th scope="row">{{ task.task }}</th>
+                  <th scope="row">{{ task.date }}</th>
+              {% endif %}
+            {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+
+    <script type="text/javascript" id="Calender_seter">
+    var now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    document.getElementById('TaskTime').value = now.toISOString().slice(0,16);
+     </script>
+
+    <script type="text/javascript" id="cpmplete_delete_tasks">
+
+      function task_complete(id) {
+        $.ajax({
+          type:'GET',
+          url:"complete/"+id,
+          success: function(data){
+            location.reload();
+          }
+        });
+      }
+
+      function task_delete(id) {
+        $.ajax({
+          type:'GET',
+          url:"delete/"+id,
+          success: function(data){
+            location.reload();
+          }
+        });
+      }
+
+    </script>
+  </body>
+</html>

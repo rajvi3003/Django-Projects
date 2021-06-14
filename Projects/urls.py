@@ -18,6 +18,7 @@ from django.urls import path , include
 from django.shortcuts import render
 
 from Urlshortner import views as urlviews
+from Todo import views as todoviews
 
 #Home page for Django Portfolio
 def index(request):
@@ -27,6 +28,11 @@ def index(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('' , index , name='index'),
+
+    # Url Shortner
     path('Urlshortner/' , include('Urlshortner.urls')),
     path('go/<str:sht>' , urlviews.go , name="go"),
+
+    path('Todo/' , include('Todo.urls')),
+
 ]
