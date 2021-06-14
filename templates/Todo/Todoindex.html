@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 {% load static %}
-
+{% load define_action %}
 
 <html lang="en" dir="ltr">
   <head>
@@ -101,19 +101,22 @@
             </tr>
           </thead>
           <tbody>
-            {% for task in task_list %}
-              {% if task.status == False %}
-                <tr>
-                  <th scope="row" class="table-{{ row_colors|random }}">1</th>
-                  <th scope="row">{{ task.task }}</th>
-                  <th scope="row">{{ task.date }}</th>
-                  <th scope="row">
-                    <button type="button" class="btn btn-success" onclick="task_complete({{ task.id }})">Complete</button>
-                     /
-                    <button type="button" class="btn btn-warning" onclick="task_delete({{ task.id }})" >Delete</button></th>
-                </tr>
-              {% endif %}
-            {% endfor %}
+            {% with i=0 %}
+              {% for task in task_list %}
+                {% if task.status == False %}
+                  {% define i as i %}
+                  <tr>
+                    <th scope="row" class="table-{{ row_colors|random }}">{{ i }}</th>
+                    <th scope="row">{{ task.task }}</th>
+                    <th scope="row">{{ task.date }}</th>
+                    <th scope="row">
+                      <button type="button" class="btn btn-success" onclick="task_complete({{ task.id }})">Complete</button>
+                       /
+                      <button type="button" class="btn btn-warning" onclick="task_delete({{ task.id }})" >Delete</button></th>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            {% endwith %}
           </tbody>
         </table>
       </div>
@@ -123,16 +126,17 @@
 
         <table class="table">
           <tbody>
-
-            {% for task in task_list %}
-              {% if task.status == True %}
-                <tr class="table-{{ row_colors|random }}">
-                  <th scope="row">1</th>
-                  <th scope="row">{{ task.task }}</th>
-                  <th scope="row">{{ task.date }}</th>
-              {% endif %}
-            {% endfor %}
-
+            {% with i=0 %}
+              {% for task in task_list %}
+                {% if task.status == True %}
+                  {% define i as i %}
+                  <tr class="table-{{ row_colors|random }}">
+                    <th scope="row">{{  i  }}</th>
+                    <th scope="row">{{ task.task }}</th>
+                    <th scope="row">{{ task.date }}</th>
+                {% endif %}
+              {% endfor %}
+            {% endwith %}
           </tbody>
         </table>
       </div>
