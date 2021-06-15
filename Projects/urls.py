@@ -33,6 +33,10 @@ urlpatterns = [
     path('Urlshortner/' , include('Urlshortner.urls')),
     path('go/<str:sht>' , urlviews.go , name="go"),
 
+    #Todo
     path('Todo/' , include('Todo.urls')),
+
+    #Resources Projects
+    path('SonicRes/' , include('SonicRes.urls')),
 
 ]
