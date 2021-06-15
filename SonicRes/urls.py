@@ -1,8 +1,8 @@
 from django.urls import path
-from . import views
+from SonicRes import views
 
-app_name='SonicRes'
+app_name= 'SonicRes'
 
 urlpatterns = [
-    path('index' , views.index , name='name'),
+    path('index' , views.index , name='index'),
 ]
