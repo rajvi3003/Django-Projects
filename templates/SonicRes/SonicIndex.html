@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 
+    <link rel="shortcut icon" href="{% static 'img/sonicRun.gif' %}" type="image/gif" sizes="26x26">
+
     <style media="screen">
       body{
         background-color: #B5CAEB;
@@ -34,12 +36,17 @@
   </head>
   <body>
 
-    <h1 class="testHead">Soinc Rescources</h1>
+    {% comment %} <h1 class="testHead">Soinc Rescources</h1> {% endcomment %}
 
-    <div class="testimg">
+    {% comment %} <div class="testimg">
       <h2 class="testSubHead">Forget your static Files ! We are coming soon to make them obsolete !!</h2>
       <img src="{% static 'img/sonicRun.gif' %}" alt="" style="width:74%;margin-left:13%;">
+    </div> {% endcomment %}
+
+    <div class="testimg">
+      <img src="{% static 'img/Re_sample.png' %}" alt="" style="width:80%;margin-left:10%;">
     </div>
+
 
 
   </body>
