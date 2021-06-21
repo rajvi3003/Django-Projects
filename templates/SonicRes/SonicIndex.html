@@ -1,53 +1,192 @@
 <!DOCTYPE html>
 
-{%  load static  %}
+{% load static  %}
 
 
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>Sonic Rescources - Paras Chhugani</title>
 
+    <meta charset="UTF-8">
+    <title>Soinc Resources - Paras Chhugani</title>
+
+    {% comment %} boostrap css  {% endcomment %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 
-    <link rel="shortcut icon" href="{% static 'img/sonicRun.gif' %}" type="image/gif" sizes="26x26">
 
-    <style media="screen">
-      body{
-        background-color: #B5CAEB;
-      }
-      .testimg{
-        height: 100%
-        width: 100%;
-        margin: 0px;
-      }
-      .testSubHead{
-        position: absolute;
-        background-color: rgba(255, 255, 255, 0.5);
-        margin-left: 13%;
-        width: 74%;
-        text-align: center;
-      }
-      .testHead{
-        text-align: center;
-      }
-    </style>
+
+
+
+<style>
+
+  #parasBranding{
+    width: 200px;
+  }
+  .testDiv{
+    border: 1px solid black;
+    /* height: 30px; */
+  }
+
+  .drop-zone{
+    max-width: 250px;
+    height: 250px;
+    padding: 25px;
+    font-size: 20px;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 500;
+    color: #cccccc;
+    border: 4px dashed #009578;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+  }
+  .drop-zone--over{
+    border-style: solid;
+  }
+
+  .drop-zone__input{
+    display: none;
+  }
+  .drop-zone__thumb{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+  }
+  .drop-zone__thumb::after{
+    content: attr(data-label);
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    font-size: 14px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 5px 0;
+  }
+
+
+</style>
+
+
   </head>
+
   <body>
 
-    {% comment %} <h1 class="testHead">Soinc Rescources</h1> {% endcomment %}
+    <nav class="navbar navbar-light sticky-top" style="border-bottom:10px solid #799abc;background-color: #F6F8FF;">
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <img id="parasBranding" src="{% static 'img/paras_Branding.png' %}" alt="">
+      </a>
 
-    {% comment %} <div class="testimg">
-      <h2 class="testSubHead">Forget your static Files ! We are coming soon to make them obsolete !!</h2>
-      <img src="{% static 'img/sonicRun.gif' %}" alt="" style="width:74%;margin-left:13%;">
-    </div> {% endcomment %}
+    </nav>
 
-    <div class="testimg">
-      <img src="{% static 'img/Re_sample.png' %}" alt="" style="width:80%;margin-left:10%;">
-    </div>
+
+    <form class="UploadFile_form" action="{% url 'SonicRes:upload' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="form-div">
+
+        <div class="drop-zone">
+          <span class="drop-zone__prompt">Drop file here or click to upload</span>
+          <input type="file" name="myFile" class="drop-zone__input">
+        </div>
+
+        <div class="">
+          {% comment %} <label for="File-Name">File Name :</label>
+          <input type="text" name="File-Name" value="" placeholder=""> {% endcomment %}
+
+          <button type="submit" class="btn btn-primary form-submit" >Upload</button>
+        </div>
+
+      </div>
+
+    </form>
 
 
 
   </body>
+
+<script type="text/javascript">
+document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+  const dropZoneElement = inputElement.closest(".drop-zone");
+
+  dropZoneElement.addEventListener("click", (e) => {
+    inputElement.click();
+  });
+
+  inputElement.addEventListener("change", (e) => {
+    if (inputElement.files.length) {
+      updateThumbnail(dropZoneElement, inputElement.files[0]);
+    }
+  });
+
+  dropZoneElement.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement.classList.add("drop-zone--over");
+  });
+
+  ["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement.addEventListener(type, (e) => {
+      dropZoneElement.classList.remove("drop-zone--over");
+    });
+  });
+
+  dropZoneElement.addEventListener("drop", (e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+      inputElement.files = e.dataTransfer.files;
+      updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+    }
+
+    dropZoneElement.classList.remove("drop-zone--over");
+  });
+});
+
+/**
+ * Updates the thumbnail on a drop zone element.
+ *
+ * @param {HTMLElement} dropZoneElement
+ * @param {File} file
+ */
+function updateThumbnail(dropZoneElement, file) {
+  let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+  // First time - remove the prompt
+  if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+    dropZoneElement.querySelector(".drop-zone__prompt").remove();
+  }
+
+  // First time - there is no thumbnail element, so lets create it
+  if (!thumbnailElement) {
+    thumbnailElement = document.createElement("div");
+    thumbnailElement.classList.add("drop-zone__thumb");
+    dropZoneElement.appendChild(thumbnailElement);
+  }
+
+  thumbnailElement.dataset.label = file.name;
+
+  // Show thumbnail for image files
+  if (file.type.startsWith("image/")) {
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+    };
+  } else {
+    thumbnailElement.style.backgroundImage = null;
+  }
+}
+
+
+</script>
+
 </html>

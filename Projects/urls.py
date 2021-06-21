@@ -19,6 +19,9 @@ from django.shortcuts import render
 
 from Urlshortner import views as urlviews
 from Todo import views as todoviews
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
 
 #Home page for Django Portfolio
 def index(request):
@@ -39,4 +42,12 @@ urlpatterns = [
     #Resources Projects
     path('SonicRes/' , include('SonicRes.urls')),
 
+    #media files
+
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    urlpatterns += staticfiles_urlpatterns()
