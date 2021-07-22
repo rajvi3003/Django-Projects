@@ -8,7 +8,9 @@
     {% for rec in records %}
       <div class="">
         <p>{{ rec.title }}</p>
-        <img src= "{{ rec.shortUrl }}" width="250px" height="150px"/>
+        <img src= "https://parasdjango.pythonanywhere.com/media/{{ rec.filex }}" width="250px" height="150px"/>
+        <!-- <img src= "http://127.0.0.1:8000/media/{{ rec.filex }}" width="250px" height="150px"/> -->
+        <p>ShortUrl = {{ rec.shortUrl }}</p>
       </div>
 
     {% endfor %}
