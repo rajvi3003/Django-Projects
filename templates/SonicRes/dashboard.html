@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {% for rec in records %}
+      <div class="">
+        <p>{{ rec.title }}</p>
+        <img src= "{{ rec.shortUrl }}" width="250px" height="150px"/>
+      </div>
+
+    {% endfor %}
+  </body>
+</html>
