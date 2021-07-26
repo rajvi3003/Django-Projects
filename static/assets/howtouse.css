@@ -1,0 +1,147 @@
+.navigationBar {
+    position: absolute;
+    width: 100%;
+    height: 70px;
+    left: 0px;
+    top: 0px;
+    background: #B5CAEB;
+    border-radius: 0px;
+}
+
+.howto {
+    position: absolute;
+    width: 140.38px;
+    height: 36px;
+    left: 900.32px;
+    top: 16px;
+    font-family: Jost;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    padding-left: 10px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.logoimg {
+    position: absolute;
+    width: 170.4px;
+    height: 60px;
+    left: 9px;
+    top: 4px;
+}
+
+.content {
+    position: absolute;
+    width: 650px;
+    height: 96px;
+    left: 38px;
+    top: 60px;
+    font-family: Jost;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 52px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+.flashcards {
+    position: absolute;
+    width: 212px;
+    height: 41px;
+    left: 30px;
+    top: 200px;
+}
+
+.downurl {
+    position: absolute;
+    width: 212px;
+    height: 41px;
+    left: 200px;
+    top: 100px;
+    border: solid 3px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 8px #888888;
+}
+
+.url {
+    position: absolute;
+    width: 212px;
+    height: 41px;
+    left: 40px;
+    top: -20px;
+    /* top: 737px; */
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 43px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.copy {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 158px;
+    top: 0px;
+    border-radius: 15px;
+    background-image: url('assets/img/copy1.png');
+}
+
+.cp {
+    position: absolute;
+    width: 45px;
+    height: 40px;
+    left: 158px;
+    top: 0px;
+    border-radius: 15px;
+    background-color: transparent;
+}
+
+.insidepng {
+    position: absolute;
+    width: 312px;
+    /* height: 35px; */
+    top: 0px;
+    left: 196px;
+    /* top: 272px; */
+    font-family: Jost;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    /* line-height: 52px; */
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.deletebutton {
+    position: absolute;
+    width: 76px;
+    height: 36px;
+    left: 452px;
+    top: 308px;
+    font-family: Jost;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    background-color: brown;
+}
+
+.imga {
+    height: 200px;
+    width: 200px;
+}
