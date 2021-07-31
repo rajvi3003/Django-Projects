@@ -145,3 +145,121 @@
     height: 200px;
     width: 200px;
 }
+
+.maindiv {
+    position: absolute;
+    width: 350px;
+    height: 300px;
+    left: 751px;
+    top: 200px;
+    border-color: 3px thistle;
+    filter: drop-shadow(0px 4px 4px rgba(36, 28, 28, 0.25));
+    background: #FFFFFF;
+    border: 3px solid #B5CAEB;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.textinside {
+    position: absolute;
+    /* width: 210px;
+    height: 34px;
+    left: 1025px;
+    top: 305px; */
+    /* top: -50px; */
+    left: 85px;
+    font-family: google Jost;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 35px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.containsimg {
+    position: absolute;
+    width: 206px;
+    /*height: 150px;
+    left: 978px;
+    top: 375px; */
+    height: 140px;
+    top: 100px;
+    left: 70px;
+}
+
+.userprofile {
+    position: absolute;
+    /* height: 70px; */
+    left: 1070px;
+    top: 100px;
+}
+
+.photo {
+    height: 60px;
+}
+
+
+/* .photo {
+    height: 50px;
+    left: 200px;
+    top: 20px;
+}
+
+.dropdown {
+    display: inline;
+    left: 200px;
+    top: 0px;
+    background-color: transparent;
+    border: none;
+} */
+
+
+/* .dropdown:hover{
+
+} */
+
+.dropbtn {
+    background-color: #fcfdfd;
+    color: #000000;
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    font-weight: 800;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    top: -10px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #ffffff;
+}
